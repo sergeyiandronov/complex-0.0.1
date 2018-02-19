@@ -9,8 +9,8 @@ struct complex_t {
         
     }
    
-    complex_t add(complex_t other)const{ 
-complex_t result;
+complex_t add(complex_t other)const{ 
+    complex_t result;
     result.real=real+other.real;
     result.imag=imag+other.imag;
     return result;
