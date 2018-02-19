@@ -9,7 +9,7 @@ struct complex_t {
         
     }
    
-    complex_t add(complex_t other)const{ //this - complex * const
+    complex_t add(complex_t other)const{ 
 complex_t result;
     result.real=real+other.real;
     result.imag=imag+other.imag;
@@ -47,7 +47,7 @@ std::istream & read( std::istream & stream ){
 
     return stream;
 }
-std::ostream & write( std::ostream & stream) const{
+std::ostream & write( std::ostream & stream) {
       stream<<"("<<real<<","<<imag<<")";
     return stream;
 }
@@ -58,19 +58,19 @@ int main() {
     char op;
     complex_t comp1,comp2;
     
-    if(read(cin,comp1)&&(cin>>op)&&read(cin,comp2)){
+    if(comp1.read(cin)&&(cin>>op)&&comp2.read(cin)){
     switch(op){
         case '+':
-            write(cout,add(comp1,comp2));
+            (comp1.add(comp2)).write(cout);
             break;
         case '-':
-            write(cout,sub(comp1,comp2));
+           (comp1.sub(comp2)).write(cout);
             break;
         case '*':
-            write(cout,mul(comp1,comp2));
+           (comp1.mul(comp2)).write(cout);
             break;
         case '/':
-            write(cout,div(comp1,comp2));
+            (comp1.div(comp2)).write(cout);
 
             break;
         default: cout<<"\nAn error has occured while reading input data"; break;
