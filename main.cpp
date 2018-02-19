@@ -1,16 +1,14 @@
 #include <iostream>
 using namespace std;
 struct complex_t {
-    
+     float real;
+    float imag;
     complex_t(){
         real=0.0f;
         imag=0.0f;
         
     }
-    ~complex(){
-       
-        
-    }
+   
     complex_t add(complex_t other)const{ //this - complex * const
 complex_t result;
     result.real=real+other.real;
@@ -23,23 +21,23 @@ complex_t sub(complex_t other)const{
     result.imag=imag-other.imag;
     return result;
 }
-complex_t mul(complex_t rhs,complex_t lhs)const{
+complex_t mul(complex_t other)const{
     complex_t result;
-    result.real=rhs.real*lhs.real-rhs.imag*lhs.imag;
-    result.imag=rhs.imag*lhs.real+rhs.real*lhs.imag;
+    result.real=real*other.real-imag*other.imag;
+    result.imag=imag*other.real+real*other.imag;
     return result;
 }
-complex_t div(complex_t rhs,complex_t lhs)const{
+complex_t div(complex_t other)const{
   complex_t result;
-    result.real=(rhs.real*lhs.real+rhs.imag*lhs.imag)/(lhs.real*lhs.real+lhs.imag*lhs.imag);
-    result.imag=(rhs.imag*lhs.real-rhs.real*lhs.imag)/(lhs.real*lhs.real+lhs.imag*lhs.imag);
+    result.real=(real*other.real+imag*other.imag)/(other.real*other.real+other.imag*other.imag);
+    result.imag=(imag*other.real-real*other.imag)/(other.real*other.real+other.imag*other.imag);
     return result;
 }
 std::istream & read( std::istream & stream ){
     char f1,f2,f3;
     float xreal;
     float ximag;
-    if (stream>>f1 && f1=='(' && stream>>real && stream>>f2 && f2 == ',' && stream>>imag && stream>> f3 && f3 == ')') {
+    if (stream>>f1 && f1=='(' && stream>>xreal && stream>>f2 && f2 == ',' && stream>>ximag && stream>> f3 && f3 == ')') {
         real = xreal;
         imag = ximag;
     }
@@ -53,8 +51,7 @@ std::ostream & write( std::ostream & stream) const{
       stream<<"("<<real<<","<<imag<<")";
     return stream;
 }
-    float real;
-    float imag;
+   
 };
 
 int main() {
